@@ -11,7 +11,7 @@ from .schemas import Customer, CustomerGroup
 
 @transform
 def read_customers(
-    spark: SparkSession, path: Annotated[CustomersPath, Context()]
+    spark: Annotated[SparkSession, Context()], path: Annotated[CustomersPath, Context()]
 ) -> Annotated[DataFrame, Strict(Customer)]:
     return spark.read.parquet(path)
 

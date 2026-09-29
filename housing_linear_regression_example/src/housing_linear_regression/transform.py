@@ -13,7 +13,7 @@ FEATURE_COLUMNS = ["number_of_bedrooms", "square_footage"]
 
 @transform
 def read_data(
-    spark: SparkSession, path: Annotated[HousingPath, Context()]
+    spark: Annotated[SparkSession, Context()], path: Annotated[HousingPath, Context()]
 ) -> Annotated[DataFrame, ProjectCast(Housing)]:
     return spark.read.parquet(path)
 

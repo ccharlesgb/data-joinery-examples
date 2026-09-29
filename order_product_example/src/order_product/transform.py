@@ -11,7 +11,7 @@ from .schemas import Customer, Order, OrderWithCustomerDimension
 
 @transform
 def read_orders(
-    spark: SparkSession, path: Annotated[OrdersPath, Context()]
+    spark: Annotated[SparkSession, Context()], path: Annotated[OrdersPath, Context()]
 ) -> Annotated[DataFrame, ProjectCast(Order)]:
     return spark.read.parquet(path)
 
@@ -26,7 +26,7 @@ def filter_orders(
 
 @transform
 def read_customers(
-    spark: SparkSession, path: Annotated[CustomersPath, Context()]
+    spark: Annotated[SparkSession, Context()], path: Annotated[CustomersPath, Context()]
 ) -> Annotated[DataFrame, ProjectCast(Customer)]:
     return spark.read.parquet(path)
 

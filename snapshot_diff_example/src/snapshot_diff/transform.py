@@ -13,7 +13,7 @@ from .schemas import DimensionTransitions, SnapshottedDimension
 
 @transform
 def read_snapshot(
-    spark: SparkSession,
+    spark: Annotated[SparkSession, Context()],
     path: Annotated[SnapshottedDimensionPath, Context()],
     run_date: Annotated[RunDate, Context()],
 ) -> Annotated[DataFrame, Strict(SnapshottedDimension)]:
@@ -26,7 +26,7 @@ def read_snapshot(
 
 @transform
 def get_current_snapshot(
-    spark: SparkSession,
+    spark: Annotated[SparkSession, Context()],
     path: Annotated[SnapshottedDimensionPath, Context()],
     run_date: Annotated[RunDate, Context()],
 ) -> Annotated[DataFrame, Strict(SnapshottedDimension)]:
@@ -35,7 +35,7 @@ def get_current_snapshot(
 
 @transform
 def get_previous_snapshot(
-    spark: SparkSession,
+    spark: Annotated[SparkSession, Context()],
     path: Annotated[SnapshottedDimensionPath, Context()],
     run_date: Annotated[RunDate, Context()],
 ) -> Annotated[DataFrame, Strict(SnapshottedDimension)]:
