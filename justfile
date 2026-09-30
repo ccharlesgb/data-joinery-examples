@@ -10,16 +10,16 @@ skills:
     uvx library-skills
 
 test:
-    uv run pytest
+    uv run --all-packages pytest
 
 lint:
-    uv run ruff check . --fix
+    uv run --all-packages ruff check . --fix
 
 types:
-    uv run pyrefly check
+    uv run --all-packages pyrefly check
 
 format:
-    uv run ruff format .
+    uv run --all-packages ruff format .
 
 check: lint types format test
 

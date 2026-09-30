@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import date
 
-from data_joinery import SparkContext
+from data_joinery.backends.spark import SparkContext
 
 
 class SnapshottedDimensionPath(str):

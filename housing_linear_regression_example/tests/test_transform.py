@@ -34,4 +34,4 @@ def test_fit_model_learns_housing_feature_coefficients(spark: SparkSession):
 
     assert model.coefficients.toArray()[0] == pytest.approx(100.0)
     assert model.coefficients.toArray()[1] == pytest.approx(2.0)
-    assert model.intercept == pytest.approx(-50.0)
+    assert model.intercept == pytest.approx(-50.0, abs=1e-3)

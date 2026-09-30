@@ -31,9 +31,9 @@ def prepare_features(
 def fit_model(
     prepared_housing: Annotated[DataFrame, Project(HousingWithFeatures)],
 ) -> LinearRegressionModel:
-    return LinearRegression(featuresCol="features", labelCol="price").fit(
-        prepared_housing
-    )
+    return LinearRegression(
+        featuresCol="features", labelCol="price", regParam=0.0001
+    ).fit(prepared_housing)
 
 
 @transform
