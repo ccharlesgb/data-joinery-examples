@@ -44,4 +44,5 @@ members = [
     "snapshot_diff_example",
     "housing_linear_regression_example",
     "sklearn_spark_example",
+    "snowplow_delta_example",
 ]
