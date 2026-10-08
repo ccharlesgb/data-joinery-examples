@@ -10,7 +10,6 @@ members = [
     "order-product",
     "sklearn-spark",
     "snapshot-diff",
-    "snowplow-delta",
 ]
 
 [[package]]
@@ -131,14 +130,14 @@ wheels = [
 
 [[package]]
 name = "data-joinery"
-version = "0.1.1"
+version = "0.1.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "rustworkx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/42/4b/3a89c087d7a7d89b0a95e13ecb9bf7500514bedcfa8aee0863a4729bb409/data_joinery-0.1.1.tar.gz", hash = "sha256:ab895ddf3696d919f7f106341a7629bae8a83d6eccc849e3077a5912b5bb3cdb", size = 25970, upload-time = "2026-09-29T23:42:16.637Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/27/ae/9a29caa49b997f14228d4c4bd5d724ba71e824f708174d02dcfd4be72e93/data_joinery-0.1.2.tar.gz", hash = "sha256:e37494532c5da3de8d99a83025798004cd13e1df26681ada4bb236d8ed2705de", size = 30673, upload-time = "2026-10-08T23:38:31.787Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a6/a4/11232cc4993f273a48bcdd7ddc7d47ba4d49a61ed29106d71e98115f91e3/data_joinery-0.1.1-py3-none-any.whl", hash = "sha256:86807ed904ffd7b4f1ceca3e4ff42bc3c52c9a43d5fb3d373e87907e498dbac0", size = 36479, upload-time = "2026-09-29T23:42:15.515Z" },
+    { url = "https://files.pythonhosted.org/packages/c3/76/f5c594e9e5c8def004bb86daf43aceccb7a38fc1c73b705a7199be13330e/data_joinery-0.1.2-py3-none-any.whl", hash = "sha256:f7485aca44418a2a33fe06c0dec78ca9b6c5af6c6cec423d86ec79cff2926b34", size = 41635, upload-time = "2026-10-08T23:38:30.583Z" },
 ]
 
 [package.optional-dependencies]
@@ -172,7 +171,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "data-joinery", extras = ["all"], specifier = ">=0.1.1" },
+    { name = "data-joinery", extras = ["all"], specifier = ">=0.1.2" },
     { name = "numpy", specifier = ">=2.4.1" },
     { name = "polars", specifier = ">=1.44.2" },
     { name = "pyarrow", specifier = ">=18" },
@@ -186,19 +185,6 @@ dev = [
     { name = "pyspark", specifier = "==4.1.0" },
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "ruff", specifier = ">=0.16.8" },
-]
-
-[[package]]
-name = "delta-spark"
-version = "4.4.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "importlib-metadata" },
-    { name = "pyspark" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/21/1d/790855199ca10157df5552cbcfe957dcada5a82b21950e024336e67d77ad/delta_spark-4.4.0.tar.gz", hash = "sha256:7d1988ca6c3ef0ab1b886634ecdff56e930c5c2e3e479cce1125c82d7898ac3a", size = 46832, upload-time = "2026-08-20T06:38:01.32Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/03/0e/8b1df0a63b4f99fef19074c5ee51eb42423704d067c74a70b20fb688a730/delta_spark-4.4.0-py3-none-any.whl", hash = "sha256:f15cedc2c59855b1660a692f9aca1deac0c4dfcec46531b203025281b102e9c8", size = 54966, upload-time = "2026-08-20T06:38:00.261Z" },
 ]
 
 [[package]]
@@ -246,18 +232,6 @@ wheels = [
 name = "housing-linear-regression"
 version = "0.1.0"
 source = { editable = "housing_linear_regression_example" }
-
-[[package]]
-name = "importlib-metadata"
-version = "8.7.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "zipp" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/f3/49/3b30cad09e7771a4982d9975a8cbf64f00d4a1ececb53297f1d9a7be1b10/importlib_metadata-8.7.1.tar.gz", hash = "sha256:49fef1ae6440c182052f407c8d34a68f72efc36db9ca90dc0113398f2fdde8bb", size = 57107, upload-time = "2025-12-21T10:00:19.278Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/fa/5e/f8e9a1d23b9c20a551a8a02ea3637b4642e22c2626e3a13a9a29cdea99eb/importlib_metadata-8.7.1-py3-none-any.whl", hash = "sha256:5a1f80bf1daa489495071efbb095d75a634cf28a8bc299581244063b53176151", size = 27865, upload-time = "2025-12-21T10:00:18.329Z" },
-]
 
 [[package]]
 name = "iniconfig"
@@ -1000,21 +974,6 @@ version = "0.1.0"
 source = { editable = "snapshot_diff_example" }
 
 [[package]]
-name = "snowplow-delta"
-version = "0.1.0"
-source = { editable = "snowplow_delta_example" }
-dependencies = [
-    { name = "data-joinery" },
-    { name = "delta-spark" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "data-joinery", specifier = ">=0.1.1" },
-    { name = "delta-spark", specifier = ">=4.4,<4.5" },
-]
-
-[[package]]
 name = "threadpoolctl"
 version = "3.7.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1057,13 +1016,4 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a3/26/b09b8010994eccc3c09092e6b34058f36a460eea2d4c3e8b910c695975a0/typing_inspection-0.4.4.tar.gz", hash = "sha256:547274fa6b0a561ccf549cc9524b999a578e737d015d8709d021f9d0d13bea47", size = 76928, upload-time = "2026-08-12T12:37:25.997Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/67/81/4add07e5172b7ac40d8ed5ff580409a7801a4fe26d529bdd915401dabfbe/typing_inspection-0.4.4-py3-none-any.whl", hash = "sha256:65b8397ba37ccbce054456aaccddfc91e6e3083c92824df348d96ca832f3f147", size = 14750, upload-time = "2026-08-12T12:37:24.648Z" },
-]
-
-[[package]]
-name = "zipp"
-version = "4.1.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/b9/d8/eab98a517c14134c0b2eb4e2387bc5f457334293ec5d2dd3857ec2966802/zipp-4.1.0.tar.gz", hash = "sha256:4cb57381f544315db7688e976e922a2b18cdb513d21cc194eb42232ba2a3e602", size = 26214, upload-time = "2026-05-18T20:08:57.967Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/3a/13/547360d81e6d88d58492968ffda9f9542854f11310ee556fef14260cc886/zipp-4.1.0-py3-none-any.whl", hash = "sha256:25ad4e16390cd314347dd8f1de67a2ac538ae658ed4ab9db16029c07c188e97f", size = 10238, upload-time = "2026-05-18T20:08:57.045Z" },
 ]
