@@ -6,7 +6,7 @@ dependencies = [
     "numpy>=2.4.1",
     "polars>=1.44.2",
     "pyarrow>=18",
-    "data-joinery[all]==0.2.0",
+    "data-joinery[all]==0.3.1",
     "scikit-learn>=1.9.1",
 ]
 
@@ -17,6 +17,7 @@ dev = [
     "pytest>=9.1.1",
     "ruff>=0.16.8",
     "pyspark==4.1.0",
+    "tpchgen-cli>=3.0.0",
 ]
 
 [tool.pytest.ini_options]
@@ -35,6 +36,8 @@ search-path = [
     "housing_linear_regression_example/src",
     "sklearn_spark_example/src",
     "snowplow_delta_example/src",
+    "tpch_spark_example/src",
+    "tpch_polars_example/src",
 ]
 
 [tool.uv.workspace]
@@ -44,4 +47,7 @@ members = [
     "snapshot_diff_example",
     "housing_linear_regression_example",
     "sklearn_spark_example",
+    "tpch_spark_example",
+    "tpch_polars_example",
 ]
+

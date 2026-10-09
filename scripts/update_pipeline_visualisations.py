@@ -1,6 +1,7 @@
 """Regenerate the diagrams embedded in each example README.
 
 Run from the repository root with ``uv run python scripts/update_pipeline_visualisations.py``.
+Pass a package name such as ``tpch_polars`` to render one example only.
 No Spark session or input data is needed: only pipeline graphs are constructed.
 """
 
@@ -17,12 +18,15 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> None:
+    selected = sys.argv[1] if len(sys.argv) > 1 else None
     examples = sorted(ROOT.glob("*_example/src/*/pipeline.py"))
     if not examples:
         raise RuntimeError("No example pipelines found")
 
     for pipeline_file in examples:
         package = pipeline_file.parent.name
+        if selected and package != selected:
+            continue
         example_dir = pipeline_file.parents[2]
         sys.path.insert(0, str(example_dir / "src"))
         try:
