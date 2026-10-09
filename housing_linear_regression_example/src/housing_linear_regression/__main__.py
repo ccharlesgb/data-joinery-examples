@@ -5,14 +5,19 @@ from housing_linear_regression.context import PipelineContext
 from .context import HousingPath
 from .pipeline import DATA_DIR, build_pipeline
 
-spark = (
-    SparkSession.builder.appName("housing-linear-regression-pipeline")
-    .master("local[*]")
-    .getOrCreate()
-)
 
-pipeline = build_pipeline()
-context = PipelineContext(spark, HousingPath(str(DATA_DIR / "housing.parquet")))
-pipeline.run(context)
+def main() -> None:
+    spark = (
+        SparkSession.builder.appName("housing-linear-regression-pipeline")
+        .master("local[*]")
+        .getOrCreate()
+    )
+    try:
+        context = PipelineContext(spark, HousingPath(str(DATA_DIR / "housing.parquet")))
+        build_pipeline().run(context)
+    finally:
+        spark.stop()
 
-spark.stop()
+
+if __name__ == "__main__":
+    main()

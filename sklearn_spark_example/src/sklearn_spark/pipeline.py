@@ -19,12 +19,20 @@ DATA_DIR = Path(__file__).parent.parent.parent / "data"
 def build_pipeline() -> Pipeline[AdvertPipelineContext]:
     pipeline = Pipeline(AdvertPipelineContext)
     events = pipeline.add_step(read_advert_events, name="read_advert_events")
-    spark_features = pipeline.add_step(create_advert_features)
-    polars_features = pipeline.add_step(collect_advert_features)
-    model = pipeline.add_step(fit_model)
-    predictions = pipeline.add_step(predict_training_set)
-    metrics = pipeline.add_step(calculate_prediction_metrics)
-    printed_metrics = pipeline.add_step(print_prediction_metrics)
+    spark_features = pipeline.add_step(
+        create_advert_features, name="create_advert_features"
+    )
+    polars_features = pipeline.add_step(
+        collect_advert_features, name="collect_advert_features"
+    )
+    model = pipeline.add_step(fit_model, name="fit_model")
+    predictions = pipeline.add_step(predict_training_set, name="predict_training_set")
+    metrics = pipeline.add_step(
+        calculate_prediction_metrics, name="calculate_prediction_metrics"
+    )
+    printed_metrics = pipeline.add_step(
+        print_prediction_metrics, name="print_prediction_metrics"
+    )
 
     pipeline.connect(events, spark_features)
     pipeline.connect(spark_features, polars_features)

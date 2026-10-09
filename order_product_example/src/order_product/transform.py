@@ -1,7 +1,7 @@
 from dataclasses import fields
 from typing import Annotated
 
-from data_joinery import Context, Project, ProjectCast, transform
+from data_joinery import Context, Project, ProjectCast, Strict, transform
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 
@@ -20,14 +20,14 @@ def read_orders(
 def filter_orders(
     orders: Annotated[DataFrame, Project(Order)],
     run_date: Annotated[RunDate, Context()],
-) -> Annotated[DataFrame, Project(Order)]:
+) -> Annotated[DataFrame, Strict(Order)]:
     return orders.filter(F.to_date(F.col("order_timestamp")) == F.lit(run_date))
 
 
 @transform
 def read_customers(
     spark: Annotated[SparkSession, Context()], path: Annotated[CustomersPath, Context()]
-) -> Annotated[DataFrame, ProjectCast(Customer)]:
+) -> Annotated[DataFrame, Project(Customer)]:
     return spark.read.parquet(path)
 
 
@@ -35,7 +35,7 @@ def read_customers(
 def join_orders_with_customers(
     orders: Annotated[DataFrame, Project(Order)],
     customers: Annotated[DataFrame, Project(Customer)],
-) -> Annotated[DataFrame, Project(OrderWithCustomerDimension)]:
+) -> Annotated[DataFrame, Strict(OrderWithCustomerDimension)]:
     joined = orders.join(customers, on="customer_id", how="inner")
     output_columns = [field.name for field in fields(OrderWithCustomerDimension)]
     return joined.select(*output_columns)
@@ -44,7 +44,7 @@ def join_orders_with_customers(
 @transform
 def write_output(
     order_with_customer_dimension: Annotated[
-        DataFrame, Project(OrderWithCustomerDimension)
+        DataFrame, Strict(OrderWithCustomerDimension)
     ],
     path: Annotated[OutputPath, Context()],
 ) -> None:

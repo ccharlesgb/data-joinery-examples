@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from data_joinery import Context, Project, ProjectCast, transform
+from data_joinery import Context, Project, Strict, transform
 from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.regression import LinearRegression, LinearRegressionModel
 from pyspark.sql import DataFrame, SparkSession
@@ -14,14 +14,14 @@ FEATURE_COLUMNS = ["number_of_bedrooms", "square_footage"]
 @transform
 def read_data(
     spark: Annotated[SparkSession, Context()], path: Annotated[HousingPath, Context()]
-) -> Annotated[DataFrame, ProjectCast(Housing)]:
+) -> Annotated[DataFrame, Project(Housing)]:
     return spark.read.parquet(path)
 
 
 @transform
 def prepare_features(
     housing: Annotated[DataFrame, Project(Housing)],
-) -> Annotated[DataFrame, ProjectCast(HousingWithFeatures)]:
+) -> Annotated[DataFrame, Strict(HousingWithFeatures)]:
     return VectorAssembler(inputCols=FEATURE_COLUMNS, outputCol="features").transform(
         housing
     )

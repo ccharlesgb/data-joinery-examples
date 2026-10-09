@@ -2,7 +2,7 @@ from typing import Annotated, cast
 
 import numpy as np
 import polars as pl
-from data_joinery import Context, Project, ProjectCast, Strict, transform
+from data_joinery import Context, Project, Strict, transform
 from numpy.typing import NDArray
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
@@ -30,7 +30,7 @@ TARGET_COLUMNS = ["number_of_search_views", "number_of_advert_views"]
 def read_advert_events(
     spark: Annotated[SparkSession, Context()],
     path: Annotated[AdvertEventsPath, Context()],
-) -> Annotated[DataFrame, ProjectCast(AdvertEvents)]:
+) -> Annotated[DataFrame, Project(AdvertEvents)]:
     return spark.read.parquet(path)
 
 
@@ -70,7 +70,7 @@ def create_advert_features(
 @transform
 def collect_advert_features(
     advert_features: Annotated[DataFrame, Strict(AdvertFeatures)],
-) -> Annotated[pl.DataFrame, ProjectCast(AdvertFeatures)]:
+) -> Annotated[pl.DataFrame, Strict(AdvertFeatures)]:
     """Collect the aggregated, bounded feature set onto the driver."""
     return cast(pl.DataFrame, pl.from_arrow(advert_features.toArrow()))
 

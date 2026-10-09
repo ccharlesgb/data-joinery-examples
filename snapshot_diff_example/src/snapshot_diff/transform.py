@@ -1,27 +1,13 @@
 from datetime import timedelta
 from typing import Annotated
 
-from data_joinery import Strict, transform
-from data_joinery.dependencies import Context
+from data_joinery import Context, Strict, transform
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 
 from .context import OutputPath, RunDate, SnapshottedDimensionPath
 from .schemas import DimensionTransitions, SnapshottedDimension
-
-
-@transform
-def read_snapshot(
-    spark: Annotated[SparkSession, Context()],
-    path: Annotated[SnapshottedDimensionPath, Context()],
-    run_date: Annotated[RunDate, Context()],
-) -> Annotated[DataFrame, Strict(SnapshottedDimension)]:
-    yesterdays_date = run_date - timedelta(days=1)
-    return spark.read.parquet(path).filter(
-        (F.col("snapshot_date") == yesterdays_date)
-        | (F.col("snapshot_date") == run_date)
-    )
 
 
 @transform
@@ -72,7 +58,7 @@ def compute_dimension_transitions(
 
 @transform
 def write_output(
-    order_with_customer_dimension: Annotated[DataFrame, Strict(DimensionTransitions)],
+    dimension_transitions: Annotated[DataFrame, Strict(DimensionTransitions)],
     path: Annotated[OutputPath, Context()],
 ) -> None:
-    order_with_customer_dimension.write.mode("overwrite").parquet(path)
+    dimension_transitions.write.mode("overwrite").parquet(path)

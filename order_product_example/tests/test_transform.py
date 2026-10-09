@@ -1,9 +1,12 @@
-from collections.abc import Generator
 from datetime import UTC, datetime
 
-import pytest
 from data_joinery import Schema
-from order_product.context import CustomersPath, OrdersPath, OutputPath, RunDate
+from order_product.context import (
+    CustomersPath,
+    OrdersPath,
+    OutputPath,
+    RunDate,
+)
 from order_product.schemas import Customer, Order, OrderWithCustomerDimension
 from order_product.transform import (
     filter_orders,
@@ -14,17 +17,6 @@ from order_product.transform import (
 )
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.testing import assertDataFrameEqual
-
-
-@pytest.fixture(scope="session")
-def spark() -> Generator[SparkSession]:
-    session = (
-        SparkSession.builder.master("local[1]")
-        .appName("order-product-transform-tests")
-        .getOrCreate()
-    )
-    yield session
-    session.stop()
 
 
 def test_read_orders_reads_parquet_rows(spark: SparkSession, tmp_path):

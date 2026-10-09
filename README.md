@@ -35,3 +35,11 @@ To regenerate the diagrams embedded in the example READMEs, run:
 ```sh
 uv run python scripts/update_pipeline_visualisations.py
 ```
+
+## Test the pipelines
+
+Run `just test` from the repository root. The pipeline tests build small schema-valid
+fixtures, use temporary paths for local input and output, and compare complete
+DataFrames or result objects. They inspect a named step with
+`PipelineResult.get_output("step_name", ValueType)` or inspect a writer's bound
+input with `PipelineResult.get_input("write_output", "parameter", ValueType)`.

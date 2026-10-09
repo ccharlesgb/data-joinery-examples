@@ -130,14 +130,14 @@ wheels = [
 
 [[package]]
 name = "data-joinery"
-version = "0.1.2"
+version = "0.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "rustworkx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/27/ae/9a29caa49b997f14228d4c4bd5d724ba71e824f708174d02dcfd4be72e93/data_joinery-0.1.2.tar.gz", hash = "sha256:e37494532c5da3de8d99a83025798004cd13e1df26681ada4bb236d8ed2705de", size = 30673, upload-time = "2026-10-08T23:38:31.787Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7f/2d/63bbb9f8735561725cf079fa22762677b8eef7993fe371d3f96f61b6e61d/data_joinery-0.2.0.tar.gz", hash = "sha256:fdefa5fb1f4117ba87f99a589fc1764834883e3c0887aab9160022f640714e4e", size = 34996, upload-time = "2026-10-09T16:41:04.368Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c3/76/f5c594e9e5c8def004bb86daf43aceccb7a38fc1c73b705a7199be13330e/data_joinery-0.1.2-py3-none-any.whl", hash = "sha256:f7485aca44418a2a33fe06c0dec78ca9b6c5af6c6cec423d86ec79cff2926b34", size = 41635, upload-time = "2026-10-08T23:38:30.583Z" },
+    { url = "https://files.pythonhosted.org/packages/55/0f/c761f7ac0d06d163a0846c524afd45d83a43c4717a2a005efbe98386db7b/data_joinery-0.2.0-py3-none-any.whl", hash = "sha256:089c213c959b412a56a1dab7dc52cb8335b16e6561af3d89efce81a3988bde04", size = 46576, upload-time = "2026-10-09T16:41:02.894Z" },
 ]
 
 [package.optional-dependencies]
@@ -171,7 +171,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "data-joinery", extras = ["all"], specifier = ">=0.1.2" },
+    { name = "data-joinery", extras = ["all"], specifier = "==0.2.0" },
     { name = "numpy", specifier = ">=2.4.1" },
     { name = "polars", specifier = ">=1.44.2" },
     { name = "pyarrow", specifier = ">=18" },
@@ -961,7 +961,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "data-joinery", specifier = ">=0.1.0" },
+    { name = "data-joinery", specifier = ">=0.2.0" },
     { name = "numpy", specifier = ">=2.4.1" },
     { name = "polars", specifier = ">=1.44.2" },
     { name = "pyarrow", specifier = ">=18" },
