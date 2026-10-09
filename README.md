@@ -20,7 +20,7 @@ just install
 
 # Examples
 
-Each pipeline reads the small parquet fixture in its `data/` directory. Run these commands from the repository root:
+Each pipeline reads parquet data in its `data/` directory. Run these commands from the repository root:
 
 | Example | Run | Learn |
 | --- | --- | --- |
@@ -29,6 +29,9 @@ Each pipeline reads the small parquet fixture in its `data/` directory. Run thes
 | [Orders and customers](order_product_example/README.md) | `just run-example order_product` | Join two inputs using a run date. |
 | [Spark to scikit-learn](sklearn_spark_example/README.md) | `just run-example sklearn_spark` | Cross DataFrame backends and model steps. |
 | [Snapshot transitions](snapshot_diff_example/README.md) | `just run-example snapshot_diff` | Compare two daily snapshots. |
+| [TPC-H analytical mart](tpch_example/README.md) | `just run-example tpch` | Denormalize generated TPC-H data into sales lines and order summaries. |
+
+The TPC-H example needs locally generated input files and can process much more data than the included fixtures.
 
 To regenerate the diagrams embedded in the example READMEs, run:
 

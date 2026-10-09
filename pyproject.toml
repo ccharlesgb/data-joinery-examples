@@ -17,6 +17,7 @@ dev = [
     "pytest>=9.1.1",
     "ruff>=0.16.8",
     "pyspark==4.1.0",
+    "tpchgen-cli>=3.0.0",
 ]
 
 [tool.pytest.ini_options]
@@ -35,6 +36,7 @@ search-path = [
     "housing_linear_regression_example/src",
     "sklearn_spark_example/src",
     "snowplow_delta_example/src",
+    "tpch_example/src",
 ]
 
 [tool.uv.workspace]
@@ -44,4 +46,5 @@ members = [
     "snapshot_diff_example",
     "housing_linear_regression_example",
     "sklearn_spark_example",
+    "tpch_example",
 ]

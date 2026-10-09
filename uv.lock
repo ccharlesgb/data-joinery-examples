@@ -10,6 +10,7 @@ members = [
     "order-product",
     "sklearn-spark",
     "snapshot-diff",
+    "tpch",
 ]
 
 [[package]]
@@ -167,6 +168,7 @@ dev = [
     { name = "pyspark" },
     { name = "pytest" },
     { name = "ruff" },
+    { name = "tpchgen-cli" },
 ]
 
 [package.metadata]
@@ -185,6 +187,7 @@ dev = [
     { name = "pyspark", specifier = "==4.1.0" },
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "ruff", specifier = ">=0.16.8" },
+    { name = "tpchgen-cli", specifier = ">=3.0.0" },
 ]
 
 [[package]]
@@ -980,6 +983,32 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/00/dc/6c58154c1c65f758ea979e7139cb76993a9cfc662d14e9be3c4a667cfb77/threadpoolctl-3.7.0.tar.gz", hash = "sha256:61348cfb77d53b9242e0017029244b559b810c142ced65b4e21eeca1843959a7", size = 31961, upload-time = "2026-09-15T15:46:20.263Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/43/3f/f88a53f60a472b46f4023f56d204dd7de33d34c5d2acbfa0d70a674e639e/threadpoolctl-3.7.0-py3-none-any.whl", hash = "sha256:cd8b60b5641b45c67bbf73c64c843235fc2d8a480c87389f52f5dbee893b86be", size = 26362, upload-time = "2026-09-15T15:46:19.168Z" },
+]
+
+[[package]]
+name = "tpch"
+version = "0.1.0"
+source = { editable = "tpch_example" }
+
+[[package]]
+name = "tpchgen-cli"
+version = "3.0.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/48/7a/812de426fe6286c185d57330f9220d5735427542cf3bc455933e948d2757/tpchgen_cli-3.0.0.tar.gz", hash = "sha256:1892f1e466ae0fee051129e1cf182d7d74d637b81d09f4081e4015b0e661aa0a", size = 3441596, upload-time = "2026-06-29T23:12:01.467Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c9/e7/43f1b87c6bfb7ac8c42a01857a7ad2cbf1f8865bc9cb8909d0c9e4bdda6c/tpchgen_cli-3.0.0-py3-none-macosx_10_12_x86_64.whl", hash = "sha256:c388166979b7132a3073047149704d78e5d112c5760ca2d289b395ea1ef16389", size = 3690612, upload-time = "2026-06-29T23:11:37.102Z" },
+    { url = "https://files.pythonhosted.org/packages/f7/b6/e31e5796f50f39f9a3e407bbcaabcedccc80672bf5b372531bcebe270a58/tpchgen_cli-3.0.0-py3-none-macosx_11_0_arm64.whl", hash = "sha256:0f6603c82f096241c96a851778d4633797ee732bd1e33e443c8142ec60015b17", size = 3474799, upload-time = "2026-06-29T23:11:38.811Z" },
+    { url = "https://files.pythonhosted.org/packages/fa/b9/2d78d82fbc20a0aa921470df3171737117dde15a369f4b18560e94b5b9c4/tpchgen_cli-3.0.0-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:788445305b7632845da277322691f3f4d377e2426aac4103c68115b120c7a645", size = 3752458, upload-time = "2026-06-29T23:11:40.439Z" },
+    { url = "https://files.pythonhosted.org/packages/09/4a/14aae217065e67c4340f8342b1ba86b9de78f2af85fbde3b0f19c617139f/tpchgen_cli-3.0.0-py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:234b086888b69260cfb958546fa1826a27d9480172723023812240f252471bc5", size = 3846319, upload-time = "2026-06-29T23:11:42.128Z" },
+    { url = "https://files.pythonhosted.org/packages/d1/d9/c3c623fd42ab6f3a1700797a2ce393ee929e3f1fc286f23ca2265246896f/tpchgen_cli-3.0.0-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:f68c4e5422d26ecccb218dde6bb0b2289da8e373a3a0f3c6f7850e2e309aee22", size = 3860398, upload-time = "2026-06-29T23:11:46.293Z" },
+    { url = "https://files.pythonhosted.org/packages/42/ef/87e4b15a1370bb9585758befdd0ec0e760fa3f5fec8f9bd7fa7084176a31/tpchgen_cli-3.0.0-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:395de548fb1a5e656d6e68ef935bdedb091f0112bff72636b19295d33be7a0b9", size = 4025621, upload-time = "2026-06-29T23:11:48.001Z" },
+    { url = "https://files.pythonhosted.org/packages/23/db/e5e5d550a2da3b4952db5e79d01ba7948e9feba58067cc8ebfd2c4232e39/tpchgen_cli-3.0.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8eaed46bae8974e00214a6459b7927921966353c21cf53cc8efdfa9fd99bb2dc", size = 3860299, upload-time = "2026-06-29T23:11:49.802Z" },
+    { url = "https://files.pythonhosted.org/packages/8d/20/963cceefa7e86a93f141a633b3c10de13d5aa9224fc21f8a3c4daa9e3cfe/tpchgen_cli-3.0.0-py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:26147d5ad081541651599abf5a7c050fa9d5771f811a66821cb92cd0a101a071", size = 3709213, upload-time = "2026-06-29T23:11:51.586Z" },
+    { url = "https://files.pythonhosted.org/packages/9f/45/82599b7965bc74953934a01087d3e6b12ee3c7e43f7e3d1b29ab2fd45a5b/tpchgen_cli-3.0.0-py3-none-musllinux_1_2_armv7l.whl", hash = "sha256:3714e43439e6d0144e6c202aee9db46044ef07167823f693153e84c23d00f9ea", size = 3858239, upload-time = "2026-06-29T23:11:53.174Z" },
+    { url = "https://files.pythonhosted.org/packages/d5/94/859b1a8c908e86a2eae8431aaddd6835f5902f626af82ac63865b0e13b65/tpchgen_cli-3.0.0-py3-none-musllinux_1_2_i686.whl", hash = "sha256:c57f4c491640e74510332946a94bd35ba24cc265dd7dd2690ee8b9f8eb8541a4", size = 3829003, upload-time = "2026-06-29T23:11:54.743Z" },
+    { url = "https://files.pythonhosted.org/packages/d6/67/3c1400e1265ba1f0da1a66d1d1f428ef83d6e43f9b39f45618beb512eda5/tpchgen_cli-3.0.0-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:0ff4951691b388b195129b7b847222fa598960e63739a5d2feac182609bbf8a7", size = 3923962, upload-time = "2026-06-29T23:11:56.546Z" },
+    { url = "https://files.pythonhosted.org/packages/09/53/f734e84e134c0f98cffa2a08a0f5adf44da8cb7e66d871fc11768c29eee5/tpchgen_cli-3.0.0-py3-none-win32.whl", hash = "sha256:ebff7beaaf3ac0f7fedadb559477ff5786e5c3c8a1153d467cdc4adb5df17ef5", size = 3485160, upload-time = "2026-06-29T23:11:58.159Z" },
+    { url = "https://files.pythonhosted.org/packages/e7/2b/12e1eed96b22e687f5fbaebff77371350f2af5ed1fda56bf2436bf712fc7/tpchgen_cli-3.0.0-py3-none-win_amd64.whl", hash = "sha256:e3f276a75ead873f025120357baf4042f976a43070e2b3b63d147641664e9491", size = 3845860, upload-time = "2026-06-29T23:11:59.701Z" },
 ]
 
 [[package]]
