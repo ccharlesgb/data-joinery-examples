@@ -1,8 +1,8 @@
 [project]
 name = "snapshot-diff"
 version = "0.1.0"
-requires-python = ">=3.10"
-dependencies = []
+requires-python = ">=3.12"
+dependencies = ["data-joinery[pyspark,vis]>=0.3.1"]
 
 [build-system]
 requires = ["hatchling"]

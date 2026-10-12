@@ -1,7 +1,7 @@
 from dataclasses import fields
 from typing import Annotated
 
-from data_joinery import Context, Project, ProjectCast, Strict, transform
+from data_joinery import Context, Project, ProjectCast, Strict, side_effect, transform
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 
@@ -41,7 +41,7 @@ def join_orders_with_customers(
     return joined.select(*output_columns)
 
 
-@transform
+@side_effect
 def write_output(
     order_with_customer_dimension: Annotated[
         DataFrame, Strict(OrderWithCustomerDimension)
@@ -49,3 +49,12 @@ def write_output(
     path: Annotated[OutputPath, Context()],
 ) -> None:
     order_with_customer_dimension.write.mode("overwrite").parquet(path)
+
+
+@side_effect
+def show_output(
+    order_with_customer_dimension: Annotated[
+        DataFrame, Strict(OrderWithCustomerDimension)
+    ],
+) -> None:
+    order_with_customer_dimension.show()

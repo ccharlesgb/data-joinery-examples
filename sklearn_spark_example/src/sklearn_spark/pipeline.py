@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from data_joinery import Pipeline
 
 from .context import AdvertPipelineContext
@@ -12,8 +10,6 @@ from .transform import (
     print_prediction_metrics,
     read_advert_events,
 )
-
-DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
 
 def build_pipeline() -> Pipeline[AdvertPipelineContext]:

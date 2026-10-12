@@ -40,7 +40,9 @@ class PipelineContext(SparkContext):
         return cls(
             spark=spark,
             data_dir=DataDir(
-                data_dir if data_dir is not None else str(example_dir / "data")
+                data_dir
+                if data_dir is not None
+                else str(example_dir.parent / "datasets" / "tpch")
             ),
             output_dir=OutputDir(
                 output_dir if output_dir is not None else str(example_dir / "__output")

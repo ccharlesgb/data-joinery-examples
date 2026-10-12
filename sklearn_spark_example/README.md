@@ -1,19 +1,41 @@
 # Spark to scikit-learn
 
-Learn how a Data Joinery pipeline can move a small aggregated dataset between DataFrame backends and pass a model between steps.
+Aggregate advert events in Spark, then train and score a scikit-learn model with Polars data. This example shows DataFrames and a fitted model moving between typed steps.
 
 ## Run
 
-From the repository root, run `just run-example sklearn_spark`. The example reads the included parquet fixture and prints training-set prediction metrics.
+After completing the [repository setup](../README.md#setup), run this from the repository root:
+
+```sh
+just run-example sklearn_spark
+```
+
+The pipeline reads the included Parquet fixture and prints prediction metrics for the training data.
+
+## Inputs and outputs
+
+| Role | Default path or result |
+| --- | --- |
+| Input | `sklearn_spark_example/data/advert_events.parquet` contains timestamped search and view events. |
+| Output | Predictions and metrics are passed between steps; no file is written. |
+| Display | Mean absolute error, mean squared error, and R² are printed in the terminal. |
 
 ## Pipeline
 
 ![Spark to scikit-learn pipeline](pipeline.png)
 
-| Stage | What happens |
-| --- | --- |
-| Input | `data/advert_events.parquet` contains timestamped advert search and view events. |
-| Transform | Spark counts each event type by date and advert. The aggregated features are collected into Polars; scikit-learn fits a linear regression model and predicts the same rows. |
-| Output | The pipeline calculates and prints mean absolute error, mean squared error, and R². It writes no file. |
+Spark counts searches and views by date and advert. The small aggregated feature set is converted to Polars; scikit-learn fits a linear regression model and predicts those same rows. A final step calculates and prints the metrics.
 
-**What this demonstrates:** Contracts span Spark and Polars DataFrames, and typed Python values carry the fitted model and metrics through the graph. The metrics describe the training data, not held-out performance.
+## Try a variation
+
+Pass another event dataset from the repository root:
+
+```sh
+just run-example sklearn_spark --context advert_events_path=/path/to/advert_events.parquet
+```
+
+Add `--skip-side-effects` to calculate the metrics without printing them.
+
+## What this demonstrates
+
+Contracts cover both Spark and Polars DataFrames, while typed Python values carry the model and metrics through the graph. These are training-set metrics, not held-out performance estimates.

@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from data_joinery.pipeline import Pipeline
 
 from .context import PipelineContext
@@ -7,11 +5,9 @@ from .transform import (
     compute_dimension_transitions,
     get_current_snapshot,
     get_previous_snapshot,
+    show_output,
     write_output,
 )
-
-DATA_DIR = Path(__file__).parent.parent.parent / "data"
-OUTPUT_DIR = Path(__file__).parent.parent.parent / "__output"
 
 
 def build_pipeline() -> Pipeline[PipelineContext]:
@@ -24,10 +20,12 @@ def build_pipeline() -> Pipeline[PipelineContext]:
         compute_dimension_transitions, "compute_dimension_transitions"
     )
     output = pipeline.add_step(write_output, "write_output")
+    display = pipeline.add_step(show_output, "show_output")
     pipeline.connect(
         previous_snapshot, dimension_transitions, param="previous_snapshot"
     )
     pipeline.connect(current_snapshot, dimension_transitions, param="current_snapshot")
     pipeline.connect(dimension_transitions, output)
+    pipeline.connect(dimension_transitions, display)
 
     return pipeline

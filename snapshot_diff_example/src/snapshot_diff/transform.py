@@ -1,7 +1,7 @@
 from datetime import timedelta
 from typing import Annotated
 
-from data_joinery import Context, Strict, transform
+from data_joinery import Context, Strict, side_effect, transform
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.window import Window
@@ -56,9 +56,16 @@ def compute_dimension_transitions(
     )
 
 
-@transform
+@side_effect
 def write_output(
     dimension_transitions: Annotated[DataFrame, Strict(DimensionTransitions)],
     path: Annotated[OutputPath, Context()],
 ) -> None:
     dimension_transitions.write.mode("overwrite").parquet(path)
+
+
+@side_effect
+def show_output(
+    dimension_transitions: Annotated[DataFrame, Strict(DimensionTransitions)],
+) -> None:
+    dimension_transitions.show()

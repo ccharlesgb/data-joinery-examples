@@ -120,6 +120,14 @@ wheels = [
 name = "customer-group"
 version = "0.1.0"
 source = { editable = "customer_group_example" }
+dependencies = [
+    { name = "data-joinery", extra = ["pyspark", "vis"] },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "data-joinery", extras = ["pyspark", "vis"], specifier = ">=0.3.1" },
+]
 
 [[package]]
 name = "cycler"
@@ -246,6 +254,14 @@ wheels = [
 name = "housing-linear-regression"
 version = "0.1.0"
 source = { editable = "housing_linear_regression_example" }
+dependencies = [
+    { name = "data-joinery", extra = ["pyspark", "vis"] },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "data-joinery", extras = ["pyspark", "vis"], specifier = ">=0.3.1" },
+]
 
 [[package]]
 name = "iniconfig"
@@ -488,6 +504,14 @@ wheels = [
 name = "order-product"
 version = "0.1.0"
 source = { editable = "order_product_example" }
+dependencies = [
+    { name = "data-joinery", extra = ["pyspark", "vis"] },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "data-joinery", extras = ["pyspark", "vis"], specifier = ">=0.3.1" },
+]
 
 [[package]]
 name = "packaging"
@@ -966,7 +990,7 @@ name = "sklearn-spark"
 version = "0.1.0"
 source = { editable = "sklearn_spark_example" }
 dependencies = [
-    { name = "data-joinery" },
+    { name = "data-joinery", extra = ["polars", "pyspark", "vis"] },
     { name = "numpy" },
     { name = "polars" },
     { name = "pyarrow" },
@@ -975,7 +999,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "data-joinery", specifier = ">=0.2.0" },
+    { name = "data-joinery", extras = ["polars", "pyspark", "vis"], specifier = ">=0.3.1" },
     { name = "numpy", specifier = ">=2.4.1" },
     { name = "polars", specifier = ">=1.44.2" },
     { name = "pyarrow", specifier = ">=18" },
@@ -986,6 +1010,14 @@ requires-dist = [
 name = "snapshot-diff"
 version = "0.1.0"
 source = { editable = "snapshot_diff_example" }
+dependencies = [
+    { name = "data-joinery", extra = ["pyspark", "vis"] },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "data-joinery", extras = ["pyspark", "vis"], specifier = ">=0.3.1" },
+]
 
 [[package]]
 name = "threadpoolctl"

@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from data_joinery import Context, Project, Strict, transform
+from data_joinery import Context, Project, Strict, side_effect, transform
 from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.regression import LinearRegression, LinearRegressionModel
 from pyspark.sql import DataFrame, SparkSession
@@ -36,7 +36,7 @@ def fit_model(
     ).fit(prepared_housing)
 
 
-@transform
+@side_effect
 def print_coefficients(model: LinearRegressionModel) -> None:
     print(f"coefficients: {model.coefficients}")
     print(f"intercept: {model.intercept}")

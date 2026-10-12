@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from data_joinery import Context, Strict, transform
+from data_joinery import Context, Strict, side_effect, transform
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 
@@ -34,9 +34,14 @@ def denormalise_group_id(
     )
 
 
-@transform
+@side_effect
 def write_output(
     customer_groups: Annotated[DataFrame, Strict(CustomerGroup)],
     path: Annotated[OutputPath, Context()],
 ) -> None:
     customer_groups.write.mode("overwrite").parquet(path)
+
+
+@side_effect
+def show_output(customer_groups: Annotated[DataFrame, Strict(CustomerGroup)]) -> None:
+    customer_groups.show()

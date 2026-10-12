@@ -2,7 +2,7 @@ from typing import Annotated, cast
 
 import numpy as np
 import polars as pl
-from data_joinery import Context, Project, Strict, transform
+from data_joinery import Context, Project, Strict, side_effect, transform
 from numpy.typing import NDArray
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
@@ -130,6 +130,6 @@ def calculate_prediction_metrics(
     )
 
 
-@transform
+@side_effect
 def print_prediction_metrics(prediction_metrics: PredictionMetrics) -> None:
     print(prediction_metrics)

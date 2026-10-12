@@ -1,6 +1,6 @@
 # Data Joinery Examples
 
-This repo contains a collection of example pipelines for the data-joinery package.
+This repository contains seven runnable pipelines for the data-joinery package. Each example README follows the same path: run it, inspect its inputs and outputs, follow the pipeline, then try a variation.
 
 ---
 
@@ -10,17 +10,17 @@ This repo contains a collection of example pipelines for the data-joinery packag
 
 ---
 
-# Setup
+## Setup
 
-Install `uv`, `just`, and a Java runtime, then run:
+Install Python 3.14 or later, `uv`, `just`, and a Java runtime. From the repository root, run:
 
 ```sh
 just install
 ```
 
-# Examples
+## Examples
 
-Each pipeline reads parquet data in its `data/` directory. Run these commands from the repository root:
+The TPC-H pipelines share generated Parquet data in `datasets/tpch/`; the other examples read their own `data/` directories. Run these commands from the repository root:
 
 | Example | Run | Learn |
 | --- | --- | --- |
@@ -29,10 +29,12 @@ Each pipeline reads parquet data in its `data/` directory. Run these commands fr
 | [Orders and customers](order_product_example/README.md) | `just run-example order_product` | Join two inputs using a run date. |
 | [Spark to scikit-learn](sklearn_spark_example/README.md) | `just run-example sklearn_spark` | Cross DataFrame backends and model steps. |
 | [Snapshot transitions](snapshot_diff_example/README.md) | `just run-example snapshot_diff` | Compare two daily snapshots. |
-| [TPC-H analytical mart (Spark)](tpch_spark_example/README.md) | `uv run --package tpch-spark data-joinery run tpch_spark_example/main.py` | Build a star schema from generated TPC-H data with Spark. |
-| [TPC-H analytical mart (Polars)](tpch_polars_example/README.md) | `uv run --package tpch-polars data-joinery run tpch_polars_example/main.py` | Build the same mart with deferred Polars queries. |
+| [TPC-H analytical mart (Spark)](tpch_spark_example/README.md) | `just run-example tpch_spark` | Build a star schema from generated TPC-H data with Spark. |
+| [TPC-H analytical mart (Polars)](tpch_polars_example/README.md) | `just run-example tpch_polars` | Build the same mart with deferred Polars queries. |
 
-The TPC-H examples use the input files in `tpch_spark_example/data/`. Generate those files locally before running either pipeline. They can be much larger than the included test fixtures. From inside either TPC-H example directory, its `main.py` is found automatically, so `uv run --package tpch-spark data-joinery run` or `uv run --package tpch-polars data-joinery run` works without a target. From the repository root, name the desired `main.py` as shown above. Default input and output paths are resolved from each example's location. Add `--context data_dir=/path/to/data --context output_dir=/path/to/mart` to override those paths, or `--skip-side-effects` to run without writing mart tables. The existing `just run-example tpch_spark` and `just run-example tpch_polars` commands also work from the root.
+Each example defines `build_pipeline()` in `src/<package>/pipeline.py` and exposes it through `src/<package>/main.py` for the Data Joinery CLI. `just run-example` accepts a short name or an example directory (such as `tpch_polars_example/`) and forwards extra CLI options. For example, `just run-example order_product --context run_date=2026-01-02` changes the run date, and `just run-example customer_group --skip-side-effects` runs without writing or displaying output. You can also invoke the CLI directly: `uv run --package customer-group data-joinery run customer_group.main`.
+
+Run `just generate-datasets` before running either TPC-H pipeline. It replaces existing Parquet files in `datasets/tpch/` with scale factor 30 files using ZSTD level 1 compression. These large files are gitignored. The TPC-H examples resolve their default input and output paths from the repository location; their READMEs show how to override them.
 
 To regenerate the diagrams embedded in the example READMEs, run:
 

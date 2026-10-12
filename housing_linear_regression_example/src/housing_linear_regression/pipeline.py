@@ -1,12 +1,8 @@
-from pathlib import Path
-
 from data_joinery.pipeline import Pipeline
 
 from housing_linear_regression.context import PipelineContext
 
 from .transform import fit_model, prepare_features, print_coefficients, read_data
-
-DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
 
 def build_pipeline() -> Pipeline[PipelineContext]:

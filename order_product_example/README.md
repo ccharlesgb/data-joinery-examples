@@ -1,19 +1,43 @@
 # Orders and customers
 
-Learn how a Data Joinery pipeline combines two inputs and injects a run date into a transformation.
+Join orders to customer names for one run date. This example shows two input branches and a date supplied through pipeline context.
 
 ## Run
 
-From the repository root, run `just run-example order_product`. The example uses the included parquet fixtures, selects orders from **2026-01-01**, and writes `order_product_example/__output/output.parquet`.
+After completing the [repository setup](../README.md#setup), run this from the repository root:
+
+```sh
+just run-example order_product
+```
+
+The pipeline uses the included Parquet fixtures and defaults to `2026-01-01`. It displays the matching orders and writes them to `order_product_example/__output/output.parquet`.
+
+## Inputs and outputs
+
+| Role | Default path or result |
+| --- | --- |
+| Orders | `order_product_example/data/orders.parquet` contains dated orders. |
+| Customers | `order_product_example/data/customers.parquet` contains customer names. |
+| Run date | `2026-01-01`; only orders from this date are kept. |
+| Output | `order_product_example/__output/output.parquet` contains orders joined to customers. Spark writes this path as a Parquet directory and replaces it on each run. |
+| Display | The joined rows are shown in the terminal. |
 
 ## Pipeline
 
 ![Orders and customers pipeline](pipeline.png)
 
-| Stage | What happens |
-| --- | --- |
-| Inputs | `data/orders.parquet` contains dated orders; `data/customers.parquet` contains customer names. |
-| Transform | `filter_orders` keeps the run date's orders. `join_orders_with_customers` joins those orders to customers by `customer_id`. |
-| Output | The enriched orders are displayed and written as parquet to `__output/output.parquet`. |
+The orders branch reads and filters by run date. A second branch reads customers. `join_orders_with_customers` joins the branches by `customer_id`, then sends the result to the display and writer steps.
 
-**What this demonstrates:** A graph can join independent source branches, validate their DataFrame contracts, and receive runtime configuration through context.
+## Try a variation
+
+Choose another date from the repository root:
+
+```sh
+just run-example order_product --context run_date=2026-01-02
+```
+
+You can also pass `--context orders_path=/path/to/orders.parquet`, `--context customers_path=/path/to/customers.parquet`, or `--context output_path=/path/to/output.parquet`. Add `--skip-side-effects` to run the pipeline without displaying or writing rows.
+
+## What this demonstrates
+
+The graph joins independent source branches, checks their DataFrame contracts, and injects the run date through context. The two output steps are side effects that can be skipped.

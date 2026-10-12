@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from data_joinery.pipeline import Pipeline
 
 from order_product.context import PipelineContext
@@ -9,11 +7,9 @@ from .transform import (
     join_orders_with_customers,
     read_customers,
     read_orders,
+    show_output,
     write_output,
 )
-
-DATA_DIR = Path(__file__).parent.parent.parent / "data"
-OUTPUT_DIR = Path(__file__).parent.parent.parent / "__output"
 
 
 def build_pipeline() -> Pipeline[PipelineContext]:
@@ -25,10 +21,12 @@ def build_pipeline() -> Pipeline[PipelineContext]:
         join_orders_with_customers, name="join_orders_with_customers"
     )
     output = pipeline.add_step(write_output, name="write_output")
+    display = pipeline.add_step(show_output, name="show_output")
 
     pipeline.connect(orders, filtered_orders)
     pipeline.connect(filtered_orders, joined)
     pipeline.connect(customers, joined)
     pipeline.connect(joined, output)
+    pipeline.connect(joined, display)
 
     return pipeline
