@@ -32,7 +32,7 @@ The pipeline writes five Parquet files to `tpch_polars_example/__output/`. The g
 
 ![TPC-H Polars pipeline](pipeline.png)
 
-Reader steps project and cast source columns. Model steps join the sources into a sales fact table and four dimensions; the date dimension derives from the lazy fact table. Writer steps prepare lazy Parquet sinks, and one side-effect step runs all five with `pl.collect_all` so Polars can share work across the outputs. Money and measure columns use the same decimal precision and scale as the Spark mart.
+Reader steps project and cast source columns. Model steps join the sources into a sales fact table and four dimensions; the date dimension derives from the lazy fact table. Writer steps prepare lazy Parquet sinks, and one side-effect step runs all five with `pl.collect_all`. Common subplan elimination is disabled so the date dimension can use its narrow scan instead of caching the full fact table. Money and measure columns use the same decimal precision and scale as the Spark mart.
 
 ## Try a variation
 

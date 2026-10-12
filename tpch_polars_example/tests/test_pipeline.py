@@ -111,17 +111,17 @@ def test_pipeline_builds_mart_with_lazy_frames(rows, tmp_path, monkeypatch):
     write_sources(rows, data_dir)
     output_dir = tmp_path / "mart"
     collect_all = pl.collect_all
-    sink_counts = []
+    collect_calls = []
 
-    def record_collect_all(sinks):
-        sink_counts.append(len(sinks))
-        return collect_all(sinks)
+    def record_collect_all(sinks, *, optimizations):
+        collect_calls.append((len(sinks), optimizations.comm_subplan_elim))
+        return collect_all(sinks, optimizations=optimizations)
 
     monkeypatch.setattr(pl, "collect_all", record_collect_all)
     result = build_pipeline().run(
         PipelineContext(DataDir(str(data_dir)), OutputDir(str(output_dir)))
     )
-    assert sink_counts == [5]
+    assert collect_calls == [(5, False)]
 
     for name, items in rows.items():
         assert_frame_equal(

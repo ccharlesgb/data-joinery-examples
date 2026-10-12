@@ -65,4 +65,7 @@ def collect_mart_sinks(
     output_dir: Annotated[OutputDir, Context()],
 ) -> None:
     Path(output_dir).mkdir(parents=True, exist_ok=True)
-    pl.collect_all([fact_sales, dim_customers, dim_suppliers, dim_part, dim_date])
+    pl.collect_all(
+        [fact_sales, dim_customers, dim_suppliers, dim_part, dim_date],
+        optimizations=pl.QueryOptFlags(comm_subplan_elim=False),
+    )
