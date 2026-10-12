@@ -2,7 +2,7 @@
 name = "tpch-polars"
 version = "0.1.0"
 requires-python = ">=3.12"
-dependencies = ["data-joinery[polars,vis]>=0.3.1", "polars>=1.44.2"]
+dependencies = ["data-joinery[polars,vis]>=0.3.1", "polars>=2.0.0,<3"]
 
 [build-system]
 requires = ["hatchling"]
