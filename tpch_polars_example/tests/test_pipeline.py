@@ -106,13 +106,22 @@ def write_sources(rows, data_dir):
         source.write_parquet(data_dir / f"{name}.parquet")
 
 
-def test_pipeline_builds_mart_with_lazy_frames(rows, tmp_path):
+def test_pipeline_builds_mart_with_lazy_frames(rows, tmp_path, monkeypatch):
     data_dir = tmp_path / "data"
     write_sources(rows, data_dir)
     output_dir = tmp_path / "mart"
+    collect_all = pl.collect_all
+    sink_counts = []
+
+    def record_collect_all(sinks):
+        sink_counts.append(len(sinks))
+        return collect_all(sinks)
+
+    monkeypatch.setattr(pl, "collect_all", record_collect_all)
     result = build_pipeline().run(
         PipelineContext(DataDir(str(data_dir)), OutputDir(str(output_dir)))
     )
+    assert sink_counts == [5]
 
     for name, items in rows.items():
         assert_frame_equal(
@@ -216,6 +225,7 @@ def test_cli_runs_without_writing_when_side_effects_are_skipped(
         app,
         [
             "run",
+            "tpch_polars.main",
             "--context",
             f"data_dir={data_dir}",
             "--context",

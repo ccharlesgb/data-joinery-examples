@@ -25,7 +25,7 @@ check: lint types format test
 
 generate-datasets:
     find datasets/tpch -maxdepth 1 -type f -name '*.parquet' -delete
-    uv run tpchgen-cli parquet --compression='ZSTD(1)' -s 30 --output-dir datasets/tpch
+    uv run tpchgen-cli parquet --compression='ZSTD(1)' -s 10 --output-dir datasets/tpch
 
 run-example example *args:
     uv run --package {{ replace(trim_end_match(trim_end_match(example, "/"), "_example"), "_", "-") }} data-joinery run {{ trim_end_match(trim_end_match(example, "/"), "_example") }}.main {{ args }}
