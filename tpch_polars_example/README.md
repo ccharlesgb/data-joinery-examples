@@ -32,7 +32,7 @@ The pipeline writes five Parquet files to `tpch_polars_example/__output/`. The g
 
 ![TPC-H Polars pipeline](pipeline.png)
 
-Reader steps project and cast source columns. Model steps join the sources into a sales fact table and four dimensions; the date dimension derives from the lazy fact table. Writer steps use `sink_parquet` to materialize the completed queries. Money and measure columns use the same decimal precision and scale as the Spark mart.
+Reader steps project and cast source columns. Model steps join the sources into a sales fact table and four dimensions; the date dimension derives from the lazy fact table. Writer steps prepare lazy Parquet sinks, and one side-effect step runs all five with `pl.collect_all`. Common subplan elimination is disabled so the date dimension can use its narrow scan instead of caching the full fact table. Money and measure columns use the same decimal precision and scale as the Spark mart.
 
 ## Try a variation
 
@@ -48,4 +48,4 @@ Add `--skip-side-effects` to build and validate the intermediate lazy plans with
 
 ## What this demonstrates
 
-Data Joinery validates `LazyFrame` schemas without collecting the full data. Source value checks run as streaming queries and collect only the first invalid row if one exists; the writers stream the completed plans to Parquet. This example requires a Data Joinery build with Polars `LazyFrame` contract support.
+Data Joinery validates `LazyFrame` schemas without collecting the full data. Source value checks run as streaming queries and collect only the first invalid row if one exists; the final side effect streams the five sink plans to Parquet in one `pl.collect_all` call. This example requires a Data Joinery build with Polars `LazyFrame` contract support.

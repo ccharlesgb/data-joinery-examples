@@ -39,6 +39,9 @@ def build_pipeline() -> Pipeline[PipelineContext]:
     )
     part_writer = pipeline.add_step(writers.write_dim_part, name="write_dim_part")
     date_writer = pipeline.add_step(writers.write_dim_date, name="write_dim_date")
+    collect_sinks = pipeline.add_step(
+        writers.collect_mart_sinks, name="collect_mart_sinks"
+    )
 
     for name in ("customer", "nation", "region"):
         pipeline.connect(sources[name], dim_customers, param=name)
@@ -54,4 +57,9 @@ def build_pipeline() -> Pipeline[PipelineContext]:
     pipeline.connect(fact_sales, fact_writer)
     pipeline.connect(fact_sales, dim_date, param="fact_sales")
     pipeline.connect(dim_date, date_writer)
+    pipeline.connect(fact_writer, collect_sinks, param="fact_sales")
+    pipeline.connect(customer_writer, collect_sinks, param="dim_customers")
+    pipeline.connect(supplier_writer, collect_sinks, param="dim_suppliers")
+    pipeline.connect(part_writer, collect_sinks, param="dim_part")
+    pipeline.connect(date_writer, collect_sinks, param="dim_date")
     return pipeline
