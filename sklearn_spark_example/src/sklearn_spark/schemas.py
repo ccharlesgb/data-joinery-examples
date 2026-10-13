@@ -1,12 +1,15 @@
 from dataclasses import dataclass
 from datetime import date, datetime
+from typing import Annotated
+
+from pyspark.sql.types import TimestampNTZType
 
 
 @dataclass
 class AdvertEvents:
     """One advert interaction; UUID values are stored as canonical strings."""
 
-    event_timestamp: datetime
+    event_timestamp: Annotated[datetime, TimestampNTZType()]
     event_id: str
     advert_id: str
     postcode: str

@@ -1,0 +1,33 @@
+name: Run examples
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  examples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          python-version: "3.14"
+
+      - name: Install just
+        uses: extractions/setup-just@v2
+
+      - name: Install dependencies
+        run: just --shell bash install
+
+      - name: Generate TPC-H datasets
+        run: just --shell bash generate-datasets
+
+      - name: Run all examples
+        run: just --shell bash run-all-examples

@@ -138,15 +138,15 @@ wheels = [
 
 [[package]]
 name = "data-joinery"
-version = "0.3.1"
+version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "rustworkx" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/38/5b/276689f4807992538135d15548b297852f84e1f3e02f8bd2475e4ea8f509/data_joinery-0.3.1.tar.gz", hash = "sha256:87607f52a0868fefd1a9987cae45759d1b41700d8a4b3430e8b6816174f96a7f", size = 41641, upload-time = "2026-10-11T23:02:41.918Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4d/bd/6194f4bdc9c0fd5d4de371d0799899ea2343d15109bc33500a90d9d96311/data_joinery-0.4.0.tar.gz", hash = "sha256:e163cbcb1e400d71b5345043e201a38a3565602a6b9e7d2ba5ce7556d40d5ad4", size = 43458, upload-time = "2026-10-13T18:40:06.549Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/dc/00/4900220d2371f14039ea0cbd21ba61e5d0d733541920d1f6e19f1fad9003/data_joinery-0.3.1-py3-none-any.whl", hash = "sha256:ffa186ffb477c40ca7987d2c77bc18dc70e8fee1615eed38d611699bcd1f1fb8", size = 52565, upload-time = "2026-10-11T23:02:40.644Z" },
+    { url = "https://files.pythonhosted.org/packages/31/eb/08fa3c70ec34ec8789b42655fa089d9e4cac3d3cec5f58bd78d3619aa2cf/data_joinery-0.4.0-py3-none-any.whl", hash = "sha256:6b3de277db220f70d8cc7f5c2c52efc2031589a4ffaa7cd69fe9a55a7f34bc41", size = 54939, upload-time = "2026-10-13T18:40:05.195Z" },
 ]
 
 [package.optional-dependencies]
@@ -190,7 +190,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "data-joinery", extras = ["all"], specifier = "==0.3.1" },
+    { name = "data-joinery", extras = ["all"], specifier = "==0.4.0" },
     { name = "numpy", specifier = ">=2.4.1" },
     { name = "polars", specifier = ">=2.0.0,<3" },
     { name = "pyarrow", specifier = ">=18" },

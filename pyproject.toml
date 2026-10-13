@@ -6,7 +6,7 @@ dependencies = [
     "numpy>=2.4.1",
     "polars>=2.0.0,<3",
     "pyarrow>=18",
-    "data-joinery[all]==0.3.1",
+    "data-joinery[all]==0.4.0",
     "scikit-learn>=1.9.1",
 ]
 

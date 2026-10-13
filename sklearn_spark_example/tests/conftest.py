@@ -1,5 +1,5 @@
 from collections.abc import Generator
-from datetime import UTC, datetime
+from datetime import datetime
 
 import pytest
 from pyspark.sql import SparkSession
@@ -19,7 +19,7 @@ def spark() -> Generator[SparkSession]:
 
 @pytest.fixture
 def advert_events_rows() -> list[AdvertEvents]:
-    event_time = datetime(2026, 9, 1, 12, 0, tzinfo=UTC)
+    event_time = datetime(2026, 9, 1, 12, 0)
     advert_dimensions = [
         ("00000000-0000-0000-0000-000000000001", "m1a1a1", "ford", "focus", 1, 2),
         ("00000000-0000-0000-0000-000000000002", "m1a1a1", "ford", "fiesta", 2, 3),
