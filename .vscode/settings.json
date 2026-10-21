@@ -3,5 +3,6 @@
         "order_product"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "python.analysis.diagnosticsSource": "Pylance + Pyrefly"
 }

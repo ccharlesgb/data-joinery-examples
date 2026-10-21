@@ -1,6 +1,6 @@
 # Data Joinery Examples
 
-This repository contains seven runnable pipelines for the data-joinery package. Each example README follows the same path: run it, inspect its inputs and outputs, follow the pipeline, then try a variation.
+This repository contains runnable pipelines for the data-joinery package. Each example README follows the same path: run it, inspect its inputs and outputs, follow the pipeline, then try a variation.
 
 ---
 
@@ -20,7 +20,7 @@ just install
 
 ## Examples
 
-The TPC-H pipelines share generated Parquet data in `datasets/tpch/`; the other examples read their own `data/` directories. Run these commands from the repository root:
+The TPC-H pipelines share generated Parquet data in `datasets/tpch/`. The video leaderboard example initializes its own local Delta input; the other examples read their own `data/` directories. Run these commands from the repository root:
 
 | Example | Run | Learn |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ The TPC-H pipelines share generated Parquet data in `datasets/tpch/`; the other 
 | [Housing regression](housing_linear_regression_example/README.md) | `just run-example housing_linear_regression` | Pass a Spark ML model between steps. |
 | [Orders and customers](order_product_example/README.md) | `just run-example order_product` | Join two inputs using a run date. |
 | [Spark to scikit-learn](sklearn_spark_example/README.md) | `just run-example sklearn_spark` | Cross DataFrame backends and model steps. |
-| [Snapshot transitions](snapshot_diff_example/README.md) | `just run-example snapshot_diff` | Compare two daily snapshots. |
+| [Live video leaderboards](video_topk_example/README.md) | `just run-example video_topk` | Maintain per-category TOPK rankings in stateful Delta streaming windows. |
 | [TPC-H analytical mart (Spark)](tpch_spark_example/README.md) | `just run-example tpch_spark` | Build a star schema from generated TPC-H data with Spark. |
 | [TPC-H analytical mart (Polars)](tpch_polars_example/README.md) | `just run-example tpch_polars` | Build the same mart with deferred Polars queries. |
 

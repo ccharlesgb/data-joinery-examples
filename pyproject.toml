@@ -30,8 +30,8 @@ project-includes = [
     "**/*.ipynb",
 ]
 search-path = [
+    "video_topk_example/src",
     "order_product_example/src",
-    "snapshot_diff_example/src",
     "customer_group_example/src",
     "housing_linear_regression_example/src",
     "sklearn_spark_example/src",
@@ -42,9 +42,9 @@ search-path = [
 
 [tool.uv.workspace]
 members = [
+    "video_topk_example",
     "customer_group_example",
     "order_product_example",
-    "snapshot_diff_example",
     "housing_linear_regression_example",
     "sklearn_spark_example",
     "tpch_spark_example",
