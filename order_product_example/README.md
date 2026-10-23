@@ -41,3 +41,5 @@ You can also pass `--context orders_path=/path/to/orders.parquet`, `--context cu
 ## What this demonstrates
 
 The graph joins independent source branches, checks their DataFrame contracts, and injects the run date through context. The two output steps are side effects that can be skipped.
+
+The schemas use [JoineryModel](https://ccharlesgb.github.io/data-joinery/learn/schemas/joinery_model/) with `Column[T]` fields. Transforms refer to columns through model attributes such as `Order.order_timestamp` and `Order.customer_id`. Test fixtures construct model rows with keyword arguments.

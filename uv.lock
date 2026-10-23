@@ -138,15 +138,15 @@ wheels = [
 
 [[package]]
 name = "data-joinery"
-version = "0.4.0"
+version = "0.5.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "rustworkx" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4d/bd/6194f4bdc9c0fd5d4de371d0799899ea2343d15109bc33500a90d9d96311/data_joinery-0.4.0.tar.gz", hash = "sha256:e163cbcb1e400d71b5345043e201a38a3565602a6b9e7d2ba5ce7556d40d5ad4", size = 43458, upload-time = "2026-10-13T18:40:06.549Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b8/e5/756d39b394553c5215c9ad86e63a11296e67ff912ccc3dd48ea996f331eb/data_joinery-0.5.1.tar.gz", hash = "sha256:d244bc2effa68e972899257d60def5e7041f8031450e533eb2e09b33da04c1c0", size = 48520, upload-time = "2026-10-23T21:32:59.209Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/31/eb/08fa3c70ec34ec8789b42655fa089d9e4cac3d3cec5f58bd78d3619aa2cf/data_joinery-0.4.0-py3-none-any.whl", hash = "sha256:6b3de277db220f70d8cc7f5c2c52efc2031589a4ffaa7cd69fe9a55a7f34bc41", size = 54939, upload-time = "2026-10-13T18:40:05.195Z" },
+    { url = "https://files.pythonhosted.org/packages/b0/4e/abc6de8c9c2c2d5ef0e0e862dfd30030dede86f48fedffe915e74d4c4be6/data_joinery-0.5.1-py3-none-any.whl", hash = "sha256:99338d92d2fa86f673161757ab8dac4c4e24efe8b27e3f1dae20af0b444026e3", size = 61884, upload-time = "2026-10-23T21:32:57.895Z" },
 ]
 
 [package.optional-dependencies]
@@ -190,7 +190,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "data-joinery", extras = ["all"], specifier = "==0.4.0" },
+    { name = "data-joinery", extras = ["all"], specifier = ">=0.5.1" },
     { name = "numpy", specifier = ">=2.4.1" },
     { name = "polars", specifier = ">=2.0.0,<3" },
     { name = "pyarrow", specifier = ">=18" },
@@ -505,7 +505,7 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "data-joinery", extras = ["pyspark", "vis"], specifier = ">=0.3.1" }]
+requires-dist = [{ name = "data-joinery", extras = ["pyspark", "vis"], specifier = ">=0.5.1" }]
 
 [[package]]
 name = "packaging"

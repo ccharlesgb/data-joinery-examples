@@ -22,12 +22,28 @@ from pyspark.testing import assertDataFrameEqual
 def test_read_orders_reads_parquet_rows(spark: SparkSession, tmp_path):
     # Given
     input_orders = Schema(Order).create_dataframe(
-        [Order(1, "customer-1", datetime(2026, 9, 24, 8, 30, tzinfo=UTC), 100, 2)],
+        [
+            Order(
+                order_id=1,
+                customer_id="customer-1",
+                order_timestamp=datetime(2026, 9, 24, 8, 30, tzinfo=UTC),
+                product_id=100,
+                quantity=2,
+            )
+        ],
         DataFrame,
         session=spark,
     )
     expected_orders = Schema(Order).create_dataframe(
-        [Order(1, "customer-1", datetime(2026, 9, 24, 8, 30, tzinfo=UTC), 100, 2)],
+        [
+            Order(
+                order_id=1,
+                customer_id="customer-1",
+                order_timestamp=datetime(2026, 9, 24, 8, 30, tzinfo=UTC),
+                product_id=100,
+                quantity=2,
+            )
+        ],
         DataFrame,
         session=spark,
     )
@@ -45,14 +61,34 @@ def test_filter_orders_keeps_only_orders_for_run_date(spark: SparkSession):
     # Given
     input_orders = Schema(Order).create_dataframe(
         [
-            Order(1, "customer-1", datetime(2026, 9, 24, 8, 30, tzinfo=UTC), 100, 2),
-            Order(2, "customer-2", datetime(2026, 9, 25, 9, 45, tzinfo=UTC), 200, 1),
+            Order(
+                order_id=1,
+                customer_id="customer-1",
+                order_timestamp=datetime(2026, 9, 24, 8, 30, tzinfo=UTC),
+                product_id=100,
+                quantity=2,
+            ),
+            Order(
+                order_id=2,
+                customer_id="customer-2",
+                order_timestamp=datetime(2026, 9, 25, 9, 45, tzinfo=UTC),
+                product_id=200,
+                quantity=1,
+            ),
         ],
         DataFrame,
         session=spark,
     )
     expected_orders = Schema(Order).create_dataframe(
-        [Order(1, "customer-1", datetime(2026, 9, 24, 8, 30, tzinfo=UTC), 100, 2)],
+        [
+            Order(
+                order_id=1,
+                customer_id="customer-1",
+                order_timestamp=datetime(2026, 9, 24, 8, 30, tzinfo=UTC),
+                product_id=100,
+                quantity=2,
+            )
+        ],
         DataFrame,
         session=spark,
     )
@@ -67,12 +103,12 @@ def test_filter_orders_keeps_only_orders_for_run_date(spark: SparkSession):
 def test_read_customers_reads_parquet_rows(spark: SparkSession, tmp_path):
     # Given
     input_customers = Schema(Customer).create_dataframe(
-        [Customer("customer-1", "Ada")],
+        [Customer(customer_id="customer-1", name="Ada")],
         DataFrame,
         session=spark,
     )
     expected_customers = Schema(Customer).create_dataframe(
-        [Customer("customer-1", "Ada")],
+        [Customer(customer_id="customer-1", name="Ada")],
         DataFrame,
         session=spark,
     )
@@ -90,16 +126,28 @@ def test_join_orders_with_customers_keeps_matched_orders(spark: SparkSession):
     # Given
     input_orders = Schema(Order).create_dataframe(
         [
-            Order(1, "customer-1", datetime(2026, 9, 24, 8, 30, tzinfo=UTC), 100, 2),
-            Order(2, "customer-2", datetime(2026, 9, 25, 9, 45, tzinfo=UTC), 200, 1),
+            Order(
+                order_id=1,
+                customer_id="customer-1",
+                order_timestamp=datetime(2026, 9, 24, 8, 30, tzinfo=UTC),
+                product_id=100,
+                quantity=2,
+            ),
+            Order(
+                order_id=2,
+                customer_id="customer-2",
+                order_timestamp=datetime(2026, 9, 25, 9, 45, tzinfo=UTC),
+                product_id=200,
+                quantity=1,
+            ),
         ],
         DataFrame,
         session=spark,
     )
     input_customers = Schema(Customer).create_dataframe(
         [
-            Customer("customer-1", "Ada"),
-            Customer("customer-3", "Grace"),
+            Customer(customer_id="customer-1", name="Ada"),
+            Customer(customer_id="customer-3", name="Grace"),
         ],
         DataFrame,
         session=spark,

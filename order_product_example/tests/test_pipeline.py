@@ -19,15 +19,33 @@ def test_pipeline_filters_joins_and_writes_both_sources(spark: SparkSession, tmp
     other_time = datetime(2026, 1, 2, 9, 45, tzinfo=UTC)
     orders = Schema(Order).create_dataframe(
         [
-            Order(1, "customer-1", order_time, 100, 2),
-            Order(2, "customer-2", order_time, 200, 1),
-            Order(3, "customer-1", other_time, 300, 1),
+            Order(
+                order_id=1,
+                customer_id="customer-1",
+                order_timestamp=order_time,
+                product_id=100,
+                quantity=2,
+            ),
+            Order(
+                order_id=2,
+                customer_id="customer-2",
+                order_timestamp=order_time,
+                product_id=200,
+                quantity=1,
+            ),
+            Order(
+                order_id=3,
+                customer_id="customer-1",
+                order_timestamp=other_time,
+                product_id=300,
+                quantity=1,
+            ),
         ],
         DataFrame,
         session=spark,
     )
     customers = Schema(Customer).create_dataframe(
-        [Customer("customer-1", "Ada")], DataFrame, session=spark
+        [Customer(customer_id="customer-1", name="Ada")], DataFrame, session=spark
     )
     expected = Schema(OrderWithCustomerDimension).create_dataframe(
         [

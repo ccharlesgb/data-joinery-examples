@@ -2,7 +2,7 @@
 name = "order-product"
 version = "0.1.0"
 requires-python = ">=3.12"
-dependencies = ["data-joinery[pyspark,vis]>=0.3.1"]
+dependencies = ["data-joinery[pyspark,vis]>=0.5.1"]
 
 [build-system]
 requires = ["hatchling"]

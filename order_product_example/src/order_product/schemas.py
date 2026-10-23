@@ -1,22 +1,20 @@
-from dataclasses import dataclass
 from datetime import datetime
 
-
-@dataclass
-class Order:
-    order_id: int
-    customer_id: str
-    order_timestamp: datetime
-    product_id: int
-    quantity: int
+from data_joinery.schemas.joinery_model import Column, JoineryModel
 
 
-@dataclass
-class Customer:
-    customer_id: str
-    name: str
+class Order(JoineryModel):
+    order_id: Column[int]
+    customer_id: Column[str]
+    order_timestamp: Column[datetime]
+    product_id: Column[int]
+    quantity: Column[int]
 
 
-@dataclass
+class Customer(JoineryModel):
+    customer_id: Column[str]
+    name: Column[str]
+
+
 class OrderWithCustomerDimension(Order, Customer):
     pass

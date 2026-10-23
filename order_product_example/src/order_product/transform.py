@@ -1,4 +1,3 @@
-from dataclasses import fields
 from typing import Annotated
 
 from data_joinery import Context, Project, ProjectCast, Strict, side_effect, transform
@@ -21,7 +20,7 @@ def filter_orders(
     orders: Annotated[DataFrame, Project(Order)],
     run_date: Annotated[RunDate, Context()],
 ) -> Annotated[DataFrame, Strict(Order)]:
-    return orders.filter(F.to_date(F.col("order_timestamp")) == F.lit(run_date))
+    return orders.filter(F.to_date(F.col(Order.order_timestamp)) == F.lit(run_date))
 
 
 @transform
@@ -36,9 +35,15 @@ def join_orders_with_customers(
     orders: Annotated[DataFrame, Project(Order)],
     customers: Annotated[DataFrame, Project(Customer)],
 ) -> Annotated[DataFrame, Strict(OrderWithCustomerDimension)]:
-    joined = orders.join(customers, on="customer_id", how="inner")
-    output_columns = [field.name for field in fields(OrderWithCustomerDimension)]
-    return joined.select(*output_columns)
+    joined = orders.join(customers, on=Order.customer_id, how="inner")
+    return joined.select(
+        OrderWithCustomerDimension.customer_id,
+        OrderWithCustomerDimension.name,
+        OrderWithCustomerDimension.order_id,
+        OrderWithCustomerDimension.order_timestamp,
+        OrderWithCustomerDimension.product_id,
+        OrderWithCustomerDimension.quantity,
+    )
 
 
 @side_effect
